@@ -18,6 +18,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Installed Apps
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'debug_toolbar',
+
     # User Defined Apps
     'api',
     'core_auth',
@@ -25,6 +31,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
