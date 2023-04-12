@@ -11,5 +11,16 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = UserManager()
+
     phone = models.CharField(max_length=14, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True)
+    address = models.CharField(max_length=255, null=True)
+    country = models.CharField(max_length=50, null=True)
+
+    # Corporate Info (Optional)
+    company_name = models.CharField(max_length=50, null=True, blank=True)
+    corporate_phone = models.CharField(max_length=14, null=True, blank=True)
+    corporate_reg_no = models.CharField(max_length=50, null=True, blank=True)
+    company_vat_no = models.CharField(max_length=50, null=True, blank=True)
+
     profile_image = models.ImageField(blank=True, null=True, upload_to='customers/profiles/')
