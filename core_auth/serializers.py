@@ -1,0 +1,19 @@
+from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
+from djoser.serializers import UserSerializer as BaseUserSerializer
+
+
+# Customise the default UserCreate serializer from Djoser to include email
+class UserCreateSerializer(BaseUserCreateSerializer):
+    class Meta(BaseUserCreateSerializer.Meta):
+        fields = ['id', 'email', 'password', 'first_name', 'last_name', 'phone',
+                  'city', 'address', 'country', 'company_name', 'corporate_phone',
+                  'corporate_reg_no', 'company_vat_no', 'profile_image']
+        ref_name = "user_creator"
+
+
+class UserSerializer(BaseUserSerializer):
+    class Meta(BaseUserSerializer.Meta):
+        fields = ['id', 'email', 'first_name', 'last_name', 'phone',
+                  'city', 'address', 'country', 'company_name', 'corporate_phone',
+                  'corporate_reg_no', 'company_vat_no', 'profile_image']
+        ref_name = "user_lister"

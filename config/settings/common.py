@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'debug_toolbar',
+    'drf_yasg',
 
     # User Defined Apps
     'api',
@@ -99,3 +101,43 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(weeks=100),
+    'REFRESH_TOKEN_LIFETIME': timedelta(weeks=1000)
+}
+
+DJOSER = {
+    'HIDE_USERS': True,
+    'LOGIN_FIELD': 'email',
+    "SEND_ACTIVATION_EMAIL": True,
+    "LOGOUT_ON_PASSWORD_CHANGE": True,
+    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
+    "SEND_CONFIRMATION_EMAIL": True,
+    "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",  # the reset link
+    "ACTIVATION_URL": "activate/{uid}/{token}",
+    # 'SERIALIZERS': {
+    #     "user": "djoser.serializers.UserSerializer",
+    #     'user_create': 'core_auth.serializers.UserCreateSerializer',
+    #     "current_user": "djoser.serializers.UserSerializer",
+    #     "user_delete": "djoser.serializers.UserSerializer",
+    # },
+    'SERIALIZERS': {
+        "user": "core_auth.serializers.UserSerializer",
+        'user_create': 'core_auth.serializers.UserCreateSerializer',
+        "current_user": "core_auth.serializers.UserSerializer",
+        "user_delete": "core_auth.serializers.UserSerializer",
+    },
+}
