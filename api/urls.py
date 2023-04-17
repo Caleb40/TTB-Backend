@@ -24,6 +24,7 @@ swagger_documentation_endpoint = path(
 
 router = routers.DefaultRouter()
 
-# user = router.register('users', views.UserViewSet)
+user = router.register('users', views.UserViewSet)
+transaction = router.register('transactions', views.TransactionViewSet, basename='transactions')
 
 urlpatterns = router.urls + list(swagger_documentation_endpoint)

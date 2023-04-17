@@ -7,7 +7,9 @@ class UserCreateSerializer(BaseUserCreateSerializer):
     class Meta(BaseUserCreateSerializer.Meta):
         fields = ['id', 'email', 'password', 'first_name', 'last_name', 'phone',
                   'city', 'address', 'country', 'company_name', 'corporate_phone',
-                  'corporate_reg_no', 'company_vat_no', 'profile_image']
+                  'corporate_reg_no', 'company_vat_no', 'profile_image',
+                  'total_investment_plans', 'active_investment_plans', 'total_deposit',
+                  'total_withdrawal', 'total_ref_bonus', 'account_balance']
         ref_name = "user_creator"
 
 
@@ -15,5 +17,8 @@ class UserSerializer(BaseUserSerializer):
     class Meta(BaseUserSerializer.Meta):
         fields = ['id', 'email', 'first_name', 'last_name', 'phone',
                   'city', 'address', 'country', 'company_name', 'corporate_phone',
-                  'corporate_reg_no', 'company_vat_no', 'profile_image']
+                  'corporate_reg_no', 'company_vat_no', 'profile_image',
+                  'total_investment_plans', 'active_investment_plans',
+                  'total_deposit', 'total_withdrawal', 'total_ref_bonus', 'account_balance'
+                  ]
         ref_name = "user_lister"

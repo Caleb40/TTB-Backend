@@ -24,3 +24,11 @@ class User(AbstractUser):
     company_vat_no = models.CharField(max_length=50, null=True, blank=True)
 
     profile_image = models.ImageField(blank=True, null=True, upload_to='customers/profiles/')
+
+    # Financial Info
+    total_investment_plans = models.IntegerField(default=0)
+    active_investment_plans = models.IntegerField(default=0)
+    total_deposit = models.IntegerField(default=0)
+    total_withdrawal = models.IntegerField(default=0)
+    total_ref_bonus = models.IntegerField(default=0)
+    account_balance = models.IntegerField(default=0)
