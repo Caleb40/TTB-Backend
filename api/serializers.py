@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from core_auth.models import User
-from ttb_backend.models import Transaction
+from ttb_backend.models import Transaction, Document
 
 
 class TransactionSerializer(serializers.ModelSerializer):
@@ -16,3 +16,11 @@ class TransactionSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.get(id=self.context['user'])
         return Transaction.objects.create(user=user, **validated_data)
+
+
+class DocumentSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = Document
+        read_only_fields = ['user']
+        
