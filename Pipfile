@@ -12,6 +12,8 @@ djangorestframework-simplejwt = "*"
 djoser = "*"
 django-debug-toolbar = "*"
 drf-yasg = "*"
+django-cors-headers = "*"
+whitenoise = "*"
 
 [dev-packages]
 

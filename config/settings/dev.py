@@ -4,11 +4,7 @@ SECRET_KEY = 'django-insecure-s#@i^qpmrb_vpfrp0o#+%1g%$7&5q2h4uy4!i*zdda%#3@bf_7
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+ALLOWED_HOSTS = ['127.0.0.1']
 
 DATABASES = {
     'default': {

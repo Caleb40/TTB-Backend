@@ -5,9 +5,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 AUTH_USER_MODEL = 'core_auth.User'
-
 
 # Application definition
 
@@ -25,6 +23,7 @@ INSTALLED_APPS = [
     'djoser',
     'debug_toolbar',
     'drf_yasg',
+    'corsheaders',
 
     # User Defined Apps
     'api',
@@ -36,6 +35,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -63,7 +63,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -81,7 +80,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 
 LANGUAGE_CODE = 'en-us'
 
@@ -132,3 +130,28 @@ DJOSER = {
         "user_delete": "core_auth.serializers.UserSerializer",
     },
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    # 'https://cribr.up.railway.app',
+    'http://localhost:5173',
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
