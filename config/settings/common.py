@@ -132,7 +132,6 @@ DJOSER = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    # 'https://cribr.up.railway.app',
     'http://localhost:5173',
 ]
 
