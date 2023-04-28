@@ -3,9 +3,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+import ttb_backend
 
 urlpatterns = [
-    # path('', include(router.urls)),
+    path('', include('ttb_backend.urls')),
     path('api/', include('api.urls')),
     path(r'auth/', include('djoser.urls')),
     path(r'auth/', include('djoser.urls.jwt')),

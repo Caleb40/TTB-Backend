@@ -1,3 +1,6 @@
 .env
 /config/media
 /customers/profiles
+/media
+/static/
+general.log

@@ -1,6 +1,4 @@
 from .common import *
-from dotenv import load_dotenv
-
 
 load_dotenv()
 
@@ -9,7 +7,7 @@ SECRET_KEY = 'django-insecure-s#@i^qpmrb_vpfrp0o#+%1g%$7&5q2h4uy4!i*zdda%#3@bf_7
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 DATABASES = {
     'default': {
@@ -33,5 +31,8 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 RECIPIENT_ADDRESS = os.getenv('RECIPIENT_ADDRESS')
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/test_media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/test_media/'
+
+CORS_ALLOW_ALL_ORIGINS = True
+

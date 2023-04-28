@@ -2,12 +2,16 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-AUTH_USER_MODEL = 'core_auth.User'
+SITE_NAME = 'TTB'
 
-# Application definition
+AUTH_USER_MODEL = 'core_auth.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -32,10 +36,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -48,7 +53,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'ttb_backend')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,6 +82,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -111,24 +119,25 @@ SIMPLE_JWT = {
 DJOSER = {
     'HIDE_USERS': True,
     'LOGIN_FIELD': 'email',
-    "SEND_ACTIVATION_EMAIL": True,
+    "SEND_ACTIVATION_EMAIL": False,
     "LOGOUT_ON_PASSWORD_CHANGE": True,
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
     "SEND_CONFIRMATION_EMAIL": True,
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",  # the reset link
     "ACTIVATION_URL": "activate/{uid}/{token}",
-    # 'SERIALIZERS': {
-    #     "user": "djoser.serializers.UserSerializer",
-    #     'user_create': 'core_auth.serializers.UserCreateSerializer',
-    #     "current_user": "djoser.serializers.UserSerializer",
-    #     "user_delete": "djoser.serializers.UserSerializer",
-    # },
     'SERIALIZERS': {
         "user": "core_auth.serializers.UserSerializer",
         'user_create': 'core_auth.serializers.UserCreateSerializer',
         "current_user": "core_auth.serializers.UserSerializer",
         "user_delete": "core_auth.serializers.UserSerializer",
     },
+
+    # 'SERIALIZERS': {
+    #     "user": "djoser.serializers.UserSerializer",
+    #     'user_create': 'core_auth.serializers.UserCreateSerializer',
+    #     "current_user": "djoser.serializers.UserSerializer",
+    #     "user_delete": "djoser.serializers.UserSerializer",
+    # },
 }
 
 CSRF_TRUSTED_ORIGINS = [
