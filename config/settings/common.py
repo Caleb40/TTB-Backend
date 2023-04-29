@@ -142,6 +142,7 @@ DJOSER = {
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
+    'https://ttbserver.up.railway.app'
 ]
 
 INTERNAL_IPS = [
