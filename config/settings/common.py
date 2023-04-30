@@ -122,6 +122,7 @@ DJOSER = {
     "SEND_ACTIVATION_EMAIL": False,
     "LOGOUT_ON_PASSWORD_CHANGE": True,
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
+    "PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND": True,
     "SEND_CONFIRMATION_EMAIL": True,
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",  # the reset link
     "ACTIVATION_URL": "activate/{uid}/{token}",
@@ -166,29 +167,29 @@ CORS_ALLOW_HEADERS = [
 ]
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': 'general.log',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        '': {
-            'handlers': ['console', 'file'],
-            'level': os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG')
-        }
-    },
-    'formatters': {
-        'verbose': {
-            'format': '{asctype} ({levelname}) - {name} - {message}',
-            'style': '{'  # str.format()
-        }
-    }
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#         'file': {
+#             'class': 'logging.FileHandler',
+#             'filename': 'general.log',
+#             'formatter': 'verbose'
+#         }
+#     },
+#     'loggers': {
+#         '': {
+#             'handlers': ['console', 'file'],
+#             'level': os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG')
+#         }
+#     },
+#     'formatters': {
+#         'verbose': {
+#             'format': '{asctype} ({levelname}) - {name} - {message}',
+#             'style': '{'  # str.format()
+#         }
+#     }
+# }
