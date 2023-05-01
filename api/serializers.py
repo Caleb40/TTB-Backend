@@ -34,7 +34,7 @@ class CreditCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = CreditCard
         fields = [
-            'user', 'cardholders_name', 'card_number', 'expiry_date',
+            'cardholders_name', 'card_number', 'expiry_date',
             'cvv', 'billing_address'
         ]
 
