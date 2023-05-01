@@ -48,11 +48,11 @@ class Transaction(models.Model):
 
 class Document(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_front = models.ImageField(blank=True, null=True, upload_to='customers/documents/')
-    id_back = models.ImageField(blank=True, null=True, upload_to='customers/documents/')
-    passport = models.ImageField(blank=True, null=True, upload_to='customers/documents/')
-    selfie = models.ImageField(blank=True, null=True, upload_to='customers/documents/')
-    proof_of_address = models.ImageField(blank=True, null=True, upload_to='customers/documents/')
+    id_front = models.ImageField(blank=True, null=True, upload_to='ttb_customers/documents/')
+    id_back = models.ImageField(blank=True, null=True, upload_to='ttb_customers/documents/')
+    passport = models.ImageField(blank=True, null=True, upload_to='ttb_customers/documents/')
+    selfie = models.ImageField(blank=True, null=True, upload_to='ttb_customers/documents/')
+    proof_of_address = models.ImageField(blank=True, null=True, upload_to='ttb_customers/documents/')
 
 
 class CreditCard(models.Model):

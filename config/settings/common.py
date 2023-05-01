@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'drf_yasg',
     'corsheaders',
+    'cloudinary'
 
     # User Defined Apps
     'api',
