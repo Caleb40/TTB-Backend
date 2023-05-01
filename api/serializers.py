@@ -24,11 +24,19 @@ class DocumentSerializer(serializers.ModelSerializer):
         model = Document
         read_only_fields = ['user']
 
-    def create(self, validated_data):
-        user = self.context['user']
-        document = Document.objects.create(user_id=user, **validated_data)
-        return document
-
+    # def create(self, validated_data):
+    #     # Check if a document already exists for the user
+    #     user = self.context['user']
+    #     document = Document.objects.filter(user_id=user).first()
+    #     if document:
+    #         # Update the existing document
+    #         Document.objects.filter(user_id=user).update(**validated_data)
+    #         # Retrieve the updated object
+    #         document = Document.objects.get(user_id=user)
+    #         return document
+    #     # Otherwise, create a new document
+    #     return Document.objects.create(user_id=user, **validated_data)
+    #
 
 class CreditCardSerializer(serializers.ModelSerializer):
     class Meta:

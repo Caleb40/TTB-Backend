@@ -17,7 +17,7 @@ whitenoise = "*"
 python-dotenv = "*"
 gunicorn = "*"
 dj-database-url = "*"
-cloudinary = "*"
+django-cloudinary-storage = "*"
 
 [dev-packages]
 
