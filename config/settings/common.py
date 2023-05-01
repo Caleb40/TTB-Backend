@@ -167,29 +167,29 @@ CORS_ALLOW_HEADERS = [
 ]
 
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#         'file': {
-#             'class': 'logging.FileHandler',
-#             'filename': 'general.log',
-#             'formatter': 'verbose'
-#         }
-#     },
-#     'loggers': {
-#         '': {
-#             'handlers': ['console', 'file'],
-#             'level': os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG')
-#         }
-#     },
-#     'formatters': {
-#         'verbose': {
-#             'format': '{asctype} ({levelname}) - {name} - {message}',
-#             'style': '{'  # str.format()
-#         }
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'general.log',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'file'],
+            'level': os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG')
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{asctype} ({levelname}) - {name} - {message}',
+            'style': '{'  # str.format()
+        }
+    }
+}
