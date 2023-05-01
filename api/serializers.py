@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from core_auth.models import User
-from core_auth.serializers import UserSerializer
 from ttb_backend.models import Transaction, Document, CreditCard
 
 
@@ -21,11 +20,9 @@ class TransactionSerializer(serializers.ModelSerializer):
 
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = [
-            'user', 'cardholders_name', 'card_number', 'expiry_date',
-            'ccv', 'billing_address'
-        ]
+        fields = '__all__'
         model = Document
+        read_only_fields = ['user']
 
     def create(self, validated_data):
         user = self.context['user']
@@ -36,8 +33,10 @@ class DocumentSerializer(serializers.ModelSerializer):
 class CreditCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = CreditCard
-        fields = '__all__'
-        read_only_fields = ['user']
+        fields = [
+            'user', 'cardholders_name', 'card_number', 'expiry_date',
+            'cvv', 'billing_address'
+        ]
 
     def create(self, validated_data):
         user = self.context['user']
