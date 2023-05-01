@@ -2,9 +2,9 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from core_auth.serializers import UserSerializer
-from api.serializers import TransactionSerializer, DocumentSerializer
+from api.serializers import TransactionSerializer, DocumentSerializer, CreditCardSerializer
 from core_auth.models import User
-from ttb_backend.models import Transaction, Document
+from ttb_backend.models import Transaction, Document, CreditCard
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -35,3 +35,29 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Document.objects.filter(user=self.request.user)
+
+    def get_serializer_context(self):
+        context = {
+            'user': self.request.user.id,
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self,
+        }
+        return context
+
+
+class CreditCardViewSet(viewsets.ModelViewSet):
+    serializer_class = CreditCardSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return CreditCard.objects.filter(user=self.request.user)
+
+    def get_serializer_context(self):
+        context = {
+            'user': self.request.user.id,
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self,
+        }
+        return context

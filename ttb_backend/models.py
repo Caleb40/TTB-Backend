@@ -1,5 +1,6 @@
 from uuid import uuid4
 
+from django.core.validators import MinLengthValidator, MaxLengthValidator, MaxValueValidator, MinValueValidator
 from django.db import models
 
 from core_auth.models import User
@@ -52,3 +53,17 @@ class Document(models.Model):
     passport = models.ImageField(blank=True, null=True, upload_to='customers/documents/')
     selfie = models.ImageField(blank=True, null=True, upload_to='customers/documents/')
     proof_of_address = models.ImageField(blank=True, null=True, upload_to='customers/documents/')
+
+
+class CreditCard(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cardholders_name = models.CharField(max_length=30)
+    card_number = models.CharField(max_length=20)
+    expiry_date = models.DateField()
+    cvv = models.CharField(max_length=4)
+    billing_address = models.CharField(max_length=100)
+
+    # def save(self, *args, **kwargs):
+    #     # Set the day to 1
+    #     self.expiry_date = self.expiry_date.replace(day=1)
+    #     super().save(*args, **kwargs)

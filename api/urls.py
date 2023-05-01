@@ -26,5 +26,6 @@ router = routers.DefaultRouter()
 
 transaction = router.register('transactions', views.TransactionViewSet, basename='transactions')
 document = router.register('documents', views.DocumentViewSet, basename='documents')
+credit_card = router.register('cards', views.CreditCardViewSet, basename='credit_cards')
 
 urlpatterns = router.urls + list(swagger_documentation_endpoint)
