@@ -2,5 +2,5 @@
 /config/media
 /customers/profiles
 /media
-#/static/
+/static/
 general.log
