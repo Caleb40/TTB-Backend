@@ -43,3 +43,38 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "root": {"level": "INFO", "handlers": ["file", "console"]},
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+        "file": {
+            "level": os.environ.get('FILE_LOG_LEVEL', 'DEBUG'),
+            "class": "logging.FileHandler",
+            "filename": "django.log",
+            "formatter": "app",
+        },
+    },
+    "loggers": {
+        'django': {
+            "handlers": ['console', 'file'],
+            "level": os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG'),
+            "propagate": True
+
+        }
+    },
+    "formatters": {
+        "app": {
+            "format": (
+                u"%(asctime)s [%(levelname)-8s] "
+                "(%(module)s.%(funcName)s) %(message)s"
+            ),
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+}

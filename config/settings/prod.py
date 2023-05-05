@@ -1,5 +1,6 @@
-from .common import *
 import dj_database_url
+
+from .common import *
 
 DEBUG = False
 
@@ -8,7 +9,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 ALLOWED_HOSTS = ['ttbserver.up.railway.app']
 
 DATABASES = {
-     'default': dj_database_url.config()
+    'default': dj_database_url.config()
 }
 
 CLOUDINARY_STORAGE = {
@@ -29,3 +30,37 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
 DEFAULT_FROM_EMAIL = 'TTB team ttb@gmail.com'
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "root": {"level": "INFO", "handlers": ["file", "console"]},
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+        "file": {
+            "level": os.environ.get('FILE_LOG_LEVEL', 'DEBUG'),
+            "class": "logging.FileHandler",
+            "filename": "django.log",
+            "formatter": "app",
+        },
+    },
+    "loggers": {
+        'django': {
+            "handlers": ['console', 'file'],
+            "level": os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG'),
+            "propagate": True
+
+        }
+    },
+    "formatters": {
+        "app": {
+            "format": (
+                u"%(asctime)s [%(levelname)-8s] "
+                "(%(module)s.%(funcName)s) %(message)s"
+            ),
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+}

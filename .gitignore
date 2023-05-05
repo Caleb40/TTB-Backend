@@ -4,3 +4,4 @@
 /media
 /static/
 general.log
+django.log

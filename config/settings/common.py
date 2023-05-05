@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SITE_NAME = 'TTB'
 
@@ -166,31 +166,3 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
-
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': 'general.log',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        '': {
-            'handlers': ['console', 'file'],
-            'level': os.environ.get('DJANGO_LOG_LEVEL', 'DEBUG')
-        }
-    },
-    'formatters': {
-        'verbose': {
-            'format': '{asctype} ({levelname}) - {name} - {message}',
-            'style': '{'  # str.format()
-        }
-    }
-}
