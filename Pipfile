@@ -5,6 +5,18 @@ name = "pypi"
 
 [packages]
 django = "*"
+psycopg2-binary = "*"
+pillow = "*"
+djangorestframework = "*"
+djoser = "*"
+django-debug-toolbar = "*"
+drf-yasg = "*"
+django-cors-headers = "*"
+whitenoise = "*"
+python-dotenv = "*"
+gunicorn = "*"
+dj-database-url = "*"
+django-cloudinary-storage = "*"
 
 [dev-packages]
 
