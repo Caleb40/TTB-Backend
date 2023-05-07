@@ -5,5 +5,4 @@
 /static/
 general.log
 django.log
-download_railway_logs.py
 ttb_output.log

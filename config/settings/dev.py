@@ -2,6 +2,7 @@ from .common import *
 
 load_dotenv()
 
+# INSTALLED_APPS.append('django_extensions')
 
 SECRET_KEY = 'django-insecure-s#@i^qpmrb_vpfrp0o#+%1g%$7&5q2h4uy4!i*zdda%#3@bf_7'
 
