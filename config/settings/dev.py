@@ -21,6 +21,8 @@ DATABASES = {
     }
 }
 
+MIDDLEWARE.append('django_cprofile_middleware.middleware.ProfilerMiddleware', )
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = 587
@@ -30,7 +32,6 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # Custom setting. To email
 RECIPIENT_ADDRESS = os.getenv('RECIPIENT_ADDRESS')
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/ttb_test_media/'
@@ -44,7 +45,6 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 
 LOGGING = {
     "version": 1,
