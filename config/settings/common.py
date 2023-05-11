@@ -154,6 +154,8 @@ INTERNAL_IPS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'https://toptierbinary.com',
+    'http://toptierbinary.com'
 ]
 
 CORS_ALLOW_HEADERS = [
