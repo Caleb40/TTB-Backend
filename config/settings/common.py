@@ -169,4 +169,3 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
 ]
 
-DJANGO_CPROFILE_MIDDLEWARE_REQUIRE_STAFF = False
