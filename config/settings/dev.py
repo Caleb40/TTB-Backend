@@ -24,7 +24,7 @@ DATABASES = {
 MIDDLEWARE.append('django_cprofile_middleware.middleware.ProfilerMiddleware', )
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'TTB team toptierbinary.com'
+DEFAULT_FROM_EMAIL = 'TopTierBinary <noreply@toptierbinary.com>'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

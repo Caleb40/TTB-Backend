@@ -9,7 +9,7 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-SITE_NAME = 'TTB'
+SITE_NAME = 'TopTierBinary'
 
 AUTH_USER_MODEL = 'core_auth.User'
 
@@ -118,6 +118,7 @@ SIMPLE_JWT = {
 }
 
 DJOSER = {
+    'PASSWORD_RESET_CONFIRM_TEMPLATE': 'api/templates/password_reset_email.html',
     'HIDE_USERS': True,
     'LOGIN_FIELD': 'email',
     "SEND_ACTIVATION_EMAIL": True,
@@ -125,8 +126,9 @@ DJOSER = {
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
     "PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND": True,
     "SEND_CONFIRMATION_EMAIL": True,
-    "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",  # the reset link
-    "ACTIVATION_URL": "activate/{uid}/{token}",
+    "PASSWORD_RESET_CONFIRM_URL": "resetpassword/{uid}/{token}",  # the reset link
+    "PATH_TO_"
+    "ACTIVATION_URL": "/activate/{uid}/{token}",
     'SERIALIZERS': {
         "user": "core_auth.serializers.UserSerializer",
         'user_create': 'core_auth.serializers.UserCreateSerializer',
