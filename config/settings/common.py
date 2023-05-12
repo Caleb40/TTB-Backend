@@ -88,7 +88,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / 'static'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -126,6 +126,7 @@ DJOSER = {
     "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
     "PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND": True,
     "SEND_CONFIRMATION_EMAIL": True,
+    "ACTIVATION_URL": "activate/{uid}/{token}",
     "PASSWORD_RESET_CONFIRM_URL": "resetpassword/{uid}/{token}",  # the reset link
     "PATH_TO_"
     "ACTIVATION_URL": "/activate/{uid}/{token}",

@@ -1,9 +1,12 @@
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 from djoser.serializers import UserSerializer as BaseUserSerializer
+from rest_framework.permissions import AllowAny
 
 
 # Customise the default UserCreate serializer from Djoser to include email
 class UserCreateSerializer(BaseUserCreateSerializer):
+    permission_classes = [AllowAny]
+
     class Meta(BaseUserCreateSerializer.Meta):
         fields = ['id', 'email', 'password', 'first_name', 'last_name', 'phone',
                   'city', 'address', 'country', 'company_name', 'corporate_phone',
@@ -14,6 +17,8 @@ class UserCreateSerializer(BaseUserCreateSerializer):
 
 
 class UserSerializer(BaseUserSerializer):
+    # permission_classes = [AllowAny]
+
     class Meta(BaseUserSerializer.Meta):
         fields = ['id', 'email', 'first_name', 'last_name', 'phone',
                   'city', 'address', 'country', 'company_name', 'corporate_phone',
