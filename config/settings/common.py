@@ -118,7 +118,6 @@ SIMPLE_JWT = {
 }
 
 DJOSER = {
-    'PASSWORD_RESET_CONFIRM_TEMPLATE': 'api/templates/password_reset_email.html',
     'HIDE_USERS': True,
     'LOGIN_FIELD': 'email',
     "SEND_ACTIVATION_EMAIL": True,

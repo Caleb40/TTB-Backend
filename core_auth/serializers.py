@@ -17,8 +17,6 @@ class UserCreateSerializer(BaseUserCreateSerializer):
 
 
 class UserSerializer(BaseUserSerializer):
-    # permission_classes = [AllowAny]
-
     class Meta(BaseUserSerializer.Meta):
         fields = ['id', 'email', 'first_name', 'last_name', 'phone',
                   'city', 'address', 'country', 'company_name', 'corporate_phone',
