@@ -9,8 +9,6 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-SITE_NAME = 'TopTierBinary'
-
 AUTH_USER_MODEL = 'core_auth.User'
 
 INSTALLED_APPS = [

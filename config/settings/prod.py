@@ -4,6 +4,13 @@ from .common import *
 
 DEBUG = os.environ['DEBUG']
 
+DOMAIN = 'toptierbinary.com'
+SITE_NAME = 'TopTierBinary'
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+
+
 SECRET_KEY = os.environ['SECRET_KEY']
 
 ALLOWED_HOSTS = ['ttbserver.up.railway.app', 'ttb-backend.onrender.com']
