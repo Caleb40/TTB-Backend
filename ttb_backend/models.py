@@ -45,6 +45,9 @@ class Transaction(models.Model):
     investment_duration = models.IntegerField(default=0)
     gift_bonus = models.IntegerField(default=True)
 
+    def __str__(self):
+        return f'{self.user.email} - Amount: £{self.amount}'
+
 
 class Document(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
