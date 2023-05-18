@@ -15,7 +15,7 @@ def update_user_total_deposit(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Transaction)
 def add_gift_bonus(sender, instance, created, **kwargs):
-    if created:
+    if created and instance.status == 'S':
         # Add gift bonus to the user's account_balance attribute
         instance.user.account_balance += instance.gift_bonus
         instance.user.save()
