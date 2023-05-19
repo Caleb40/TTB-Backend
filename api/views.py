@@ -30,46 +30,57 @@ class TransactionViewSet(viewsets.ModelViewSet):
         return Transaction.objects.filter(user=self.request.user)
 
 
-class DocumentViewSet(viewsets.ViewSet):
+# class DocumentViewSet(viewsets.ModelViewSet):
+#     queryset = Document.objects.all()
+#     serializer_class = DocumentSerializer
+#
+#     def create(self, request, *args, **kwargs):
+#         # Check if a document with the same title already exists
+#         title = request.data.get('title')
+#         if Document.objects.filter(title=title).exists():
+#             return Response({'error': 'Document with the same title already exists.'}, status=400)
+#         return super().create(request, *args, **kwargs)
+#
+#     def update(self, request, *args, **kwargs):
+#         # Allow overriding the document with the same title
+#         partial = kwargs.pop('partial', False)
+#         instance = self.get_object()
+#         if not partial and instance.title != request.data.get('title'):
+#             return Response({'error': 'Title cannot be changed during update.'}, status=400)
+#         return super().update(request, *args, **kwargs)
+#
+#     def list(self, request, *args, **kwargs):
+#         # Limit to a single set of document objects
+#         queryset = self.filter_queryset(self.get_queryset())
+#         if len(queryset) > 1:
+#             return Response({'error': 'Only one set of document objects is allowed.'}, status=400)
+#         return super().list(request, *args, **kwargs)
+class DocumentViewSet(viewsets.ModelViewSet):
+    queryset = Document.objects.all()
     serializer_class = DocumentSerializer
+    permission_classes = [IsAuthenticated]
 
-    def list(self, request):
-        user = request.user
-        try:
-            document = Document.objects.get(user=user)
-            serializer = self.serializer_class(document)
-            return Response(serializer.data)
-        except Document.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+    def create(self, request, *args, **kwargs):
+        # Check if a document with the same user already exists
+        user = request.data.get('user')
+        if Document.objects.filter(user=user).exists():
+            return Response({'error': 'Document with the same user already exists.'}, status=400)
+        return super().create(request, *args, **kwargs)
 
-    def create(self, request):
-        user = request.user
-        try:
-            Document.objects.get(user=user)
-            return Response({'error': 'Document already exists for this user.'}, status=status.HTTP_400_BAD_REQUEST)
-        except Document.DoesNotExist:
-            serializer = self.serializer_class(data=request.data)
-            if serializer.is_valid():
-                serializer.save(user=user)
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def update(self, request, *args, **kwargs):
+        # Allow overriding the document with the same user
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        if not partial and instance.user != request.data.get('user'):
+            return Response({'error': 'User cannot be changed during update.'}, status=400)
+        return super().update(request, *args, **kwargs)
 
-    def put(self, request):
-        user = request.user
-        try:
-            document = Document.objects.get(user=user)
-            serializer = self.serializer_class(document, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_200_OK)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except Document.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-    def get_queryset(self):
-        user = self.request.user
-        return Document.objects.filter(user=user)
+    def list(self, request, *args, **kwargs):
+        # Limit to a single set of document objects
+        queryset = self.filter_queryset(self.get_queryset())
+        if len(queryset) > 1:
+            return Response({'error': 'Only one set of document objects is allowed.'}, status=400)
+        return super().list(request, *args, **kwargs)
 
 
 class CreditCardViewSet(viewsets.ModelViewSet):
