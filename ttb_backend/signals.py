@@ -1,6 +1,8 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
+
+from core_auth.models import User
 from .models import Transaction
 
 
@@ -19,6 +21,18 @@ def add_gift_bonus(sender, instance, created, **kwargs):
         # Add gift bonus to the user's account_balance attribute
         instance.user.account_balance += instance.gift_bonus
         instance.user.save()
+
+
+@receiver(post_save, sender=Transaction)
+def alert_admin_of_new_transaction(sender, instance, created, **kwargs):
+    if created:
+        subject = 'New Transaction Request!!'
+        message = f'User, {instance.user.first_name} {instance.user.last_name} with email:' \
+                  f' {instance.user.email} just initiated a transaction!!! 🎉.' \
+                  f' Check the admin and wallet address to confirm the transaction' \
+                  f' and update the status accordingly.'
+        recipient_list = ['toptierbinary@gmail.com']
+        send_mail(subject, message, from_email=None, recipient_list=recipient_list)
 
 
 @receiver(post_save, sender=Transaction)
