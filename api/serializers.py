@@ -20,9 +20,8 @@ class TransactionSerializer(serializers.ModelSerializer):
 
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = '__all__'
+        fields = ['kyc_id']
         model = Document
-        read_only_fields = ['user']
 
 
 class CreditCardSerializer(serializers.ModelSerializer):

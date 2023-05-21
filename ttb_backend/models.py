@@ -51,11 +51,7 @@ class Transaction(models.Model):
 
 class Document(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_front = models.ImageField(blank=True, null=True, upload_to='documents/')
-    id_back = models.ImageField(blank=True, null=True, upload_to='documents/')
-    passport = models.ImageField(blank=True, null=True, upload_to='documents/')
-    selfie = models.ImageField(blank=True, null=True, upload_to='documents/')
-    proof_of_address = models.ImageField(blank=True, null=True, upload_to='documents/')
+    kyc_id = models.ImageField(blank=True, null=True, upload_to='documents/')
 
 
 class CreditCard(models.Model):

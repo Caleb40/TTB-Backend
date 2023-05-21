@@ -30,31 +30,6 @@ class TransactionViewSet(viewsets.ModelViewSet):
         return Transaction.objects.filter(user=self.request.user)
 
 
-# class DocumentViewSet(viewsets.ModelViewSet):
-#     queryset = Document.objects.all()
-#     serializer_class = DocumentSerializer
-#
-#     def create(self, request, *args, **kwargs):
-#         # Check if a document with the same title already exists
-#         title = request.data.get('title')
-#         if Document.objects.filter(title=title).exists():
-#             return Response({'error': 'Document with the same title already exists.'}, status=400)
-#         return super().create(request, *args, **kwargs)
-#
-#     def update(self, request, *args, **kwargs):
-#         # Allow overriding the document with the same title
-#         partial = kwargs.pop('partial', False)
-#         instance = self.get_object()
-#         if not partial and instance.title != request.data.get('title'):
-#             return Response({'error': 'Title cannot be changed during update.'}, status=400)
-#         return super().update(request, *args, **kwargs)
-#
-#     def list(self, request, *args, **kwargs):
-#         # Limit to a single set of document objects
-#         queryset = self.filter_queryset(self.get_queryset())
-#         if len(queryset) > 1:
-#             return Response({'error': 'Only one set of document objects is allowed.'}, status=400)
-#         return super().list(request, *args, **kwargs)
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
@@ -75,12 +50,12 @@ class DocumentViewSet(viewsets.ModelViewSet):
             return Response({'error': 'User cannot be changed during update.'}, status=400)
         return super().update(request, *args, **kwargs)
 
-    def list(self, request, *args, **kwargs):
-        # Limit to a single set of document objects
-        queryset = self.filter_queryset(self.get_queryset())
-        if len(queryset) > 1:
-            return Response({'error': 'Only one set of document objects is allowed.'}, status=400)
-        return super().list(request, *args, **kwargs)
+    # def list(self, request, *args, **kwargs):
+    #     # Limit to a single set of document objects
+    #     queryset = self.filter_queryset(self.get_queryset())
+    #     # if len(queryset) > 1:
+    #     #     return Response({'error': 'Only one set of document objects is allowed.'}, status=400)
+    #     return super().list(request, *args, **kwargs)
 
 
 class CreditCardViewSet(viewsets.ModelViewSet):
