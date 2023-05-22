@@ -3,7 +3,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import routers, permissions
 from . import views
-
+from .views import DocumentViewSet
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -25,7 +25,7 @@ swagger_documentation_endpoint = path(
 router = routers.DefaultRouter()
 
 transaction = router.register('transactions', views.TransactionViewSet, basename='transactions')
-document = router.register('documents', views.DocumentViewSet, basename='documents')
+document = router.register(r'documents', DocumentViewSet, basename='document')
 credit_card = router.register('cards', views.CreditCardViewSet, basename='credit_cards')
 
 urlpatterns = router.urls + list(swagger_documentation_endpoint)

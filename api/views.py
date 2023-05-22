@@ -1,4 +1,4 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -37,25 +37,10 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         # Check if a document with the same user already exists
-        user = request.data.get('user')
+        user = request.user
         if Document.objects.filter(user=user).exists():
             return Response({'error': 'Document with the same user already exists.'}, status=400)
-        return super().create(request, *args, **kwargs)
-
-    def update(self, request, *args, **kwargs):
-        # Allow overriding the document with the same user
-        partial = kwargs.pop('partial', False)
-        instance = self.get_object()
-        if not partial and instance.user != request.data.get('user'):
-            return Response({'error': 'User cannot be changed during update.'}, status=400)
-        return super().update(request, *args, **kwargs)
-
-    # def list(self, request, *args, **kwargs):
-    #     # Limit to a single set of document objects
-    #     queryset = self.filter_queryset(self.get_queryset())
-    #     # if len(queryset) > 1:
-    #     #     return Response({'error': 'Only one set of document objects is allowed.'}, status=400)
-    #     return super().list(request, *args, **kwargs)
+        return Document.objects.create(user_id=user.id, *args, **kwargs)
 
 
 class CreditCardViewSet(viewsets.ModelViewSet):

@@ -51,7 +51,7 @@ class Transaction(models.Model):
 
 class Document(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    kyc_id = models.ImageField(blank=True, null=True, upload_to='documents/')
+    kyc_id = models.ImageField(blank=True, null=True, upload_to='documents')
 
 
 class CreditCard(models.Model):

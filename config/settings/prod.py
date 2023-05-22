@@ -1,3 +1,4 @@
+import cloudinary
 import dj_database_url
 
 from .common import *
@@ -10,7 +11,6 @@ SITE_NAME = 'TopTierBinary'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 
-
 SECRET_KEY = os.environ['SECRET_KEY']
 
 ALLOWED_HOSTS = ['ttbserver.up.railway.app', 'ttb-backend.onrender.com']
@@ -19,11 +19,17 @@ DATABASES = {
     'default': dj_database_url.config()
 }
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_NAME'),
-    'API_KEY': os.getenv('CLOUDINARY_KEY'),
-    'API_SECRET': os.getenv('CLOUDINARY_SECRET'),
-}
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': os.getenv('CLOUDINARY_NAME'),
+#     'API_KEY': os.getenv('CLOUDINARY_KEY'),
+#     'API_SECRET': os.getenv('CLOUDINARY_SECRET'),
+# }
+
+cloudinary.config(
+    cloud_name=os.getenv('CLOUDINARY_NAME'),
+    api_key=os.getenv('CLOUDINARY_KEY'),
+    api_secret=os.getenv('CLOUDINARY_SECRET')
+)
 
 # For testing cloudinary
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
