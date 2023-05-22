@@ -1,3 +1,5 @@
+import cloudinary
+
 from .common import *
 
 load_dotenv()

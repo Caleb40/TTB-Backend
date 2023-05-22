@@ -17,6 +17,7 @@ dj-database-url = "*"
 django-cloudinary-storage = "*"
 psycopg2-binary = "*"
 djoser = "*"
+cloudinary = "*"
 
 [dev-packages]
 django-cprofile-middleware = "*"

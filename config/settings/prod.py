@@ -1,4 +1,3 @@
-import cloudinary
 import dj_database_url
 
 from .common import *
@@ -25,13 +24,6 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv('CLOUDINARY_SECRET'),
 }
 
-# cloudinary.config(
-#     cloud_name=os.getenv('CLOUDINARY_NAME'),
-#     api_key=os.getenv('CLOUDINARY_KEY'),
-#     api_secret=os.getenv('CLOUDINARY_SECRET')
-# )
-
-# For testing cloudinary
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

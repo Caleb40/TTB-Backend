@@ -29,8 +29,8 @@ def alert_admin_of_new_transaction(sender, instance, created, **kwargs):
         subject = 'New Transaction Request!!'
         message = f'User, {instance.user.first_name} {instance.user.last_name} with email:' \
                   f' {instance.user.email} just initiated a transaction!!! 🎉.' \
-                  f' Check the admin and wallet address to confirm the transaction' \
-                  f' and update the status accordingly.'
+                  f' The amount is {instance.amount}. Check the admin and wallet address' \
+                  f' to confirm the transaction and update the status accordingly.'
         recipient_list = ['toptierbinary@gmail.com']
         send_mail(subject, message, from_email=None, recipient_list=recipient_list)
 
