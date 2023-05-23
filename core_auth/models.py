@@ -47,34 +47,34 @@ class User(AbstractUser):
     total_ref_bonus = models.IntegerField(default=0)
     account_balance = models.IntegerField(default=0)
 
-    def save(self, *args, **kwargs):
-        if self.profile_image:
-            compressed_image = self.compress_image(self.profile_image)
-            self.image = compressed_image
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.profile_image:
+    #         compressed_image = self.compress_image(self.profile_image)
+    #         self.image = compressed_image
+    #     super().save(*args, **kwargs)
 
-    @staticmethod
-    def compress_image(image):
-        image_io = BytesIO(image.read())
-        compressed_image = uploader.upload(
-            image_io,
-            transformation=[
-                {'quality': 'auto:low'}
-            ]
-        )
-        compressed_image_url = compressed_image['secure_url']
-        print(compressed_image_url)
-        image.seek(0)
-        image_name = image.name.split('/')[-1]
-        image_content_type = image.file.content_type
-        compressed_image_io = BytesIO(requests.get(compressed_image_url).content)
-        compressed_image_io.seek(0)
-        compressed_image_io = InMemoryUploadedFile(
-            compressed_image_io,
-            None,
-            image_name,
-            image_content_type,
-            None,
-            None
-        )
-        return compressed_image_io
+    # @staticmethod
+    # def compress_image(image):
+    #     image_io = BytesIO(image.read())
+    #     compressed_image = uploader.upload(
+    #         image_io,
+    #         transformation=[
+    #             {'quality': 'auto:low'}
+    #         ]
+    #     )
+    #     compressed_image_url = compressed_image['secure_url']
+    #     print(compressed_image_url)
+    #     image.seek(0)
+    #     image_name = image.name.split('/')[-1]
+    #     image_content_type = image.file.content_type
+    #     compressed_image_io = BytesIO(requests.get(compressed_image_url).content)
+    #     compressed_image_io.seek(0)
+    #     compressed_image_io = InMemoryUploadedFile(
+    #         compressed_image_io,
+    #         None,
+    #         image_name,
+    #         image_content_type,
+    #         None,
+    #         None
+    #     )
+    #     return compressed_image_io
