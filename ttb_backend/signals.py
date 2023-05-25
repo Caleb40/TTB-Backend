@@ -25,8 +25,8 @@ def add_gift_bonus(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Transaction)
 def alert_admin_of_new_transaction(sender, instance, created, **kwargs):
-    if created and instance.transaction_type == 'DEPOSIT':
-        subject = 'New Transaction Request!!'
+    if created:
+        subject = f'New Transaction Request!! [{instance.transaction_type.upper()}]'
         message = f'User, {instance.user.first_name} {instance.user.last_name} with email:' \
                   f' {instance.user.email} just initiated a transaction!!! 🎉.' \
                   f' The amount is £{instance.amount}. Check the admin and wallet address' \
